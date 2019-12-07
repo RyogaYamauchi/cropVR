@@ -1033,6 +1033,7 @@
             <e p="PointView.cs" t="Include" />
             <e p="ScoreView.cs" t="Include" />
             <e p="StartEffectPortView.cs" t="Include" />
+            <e p="StartEffectView.cs" t="Include" />
           </e>
         </e>
       </e>

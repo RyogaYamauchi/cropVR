@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using Scripts.Models;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Scripts.Views
 {
@@ -10,28 +8,17 @@ namespace Scripts.Views
     {
         [SerializeField] private GameObject _port;
         [SerializeField] private AudioClip _audioClipExplosion;
-        [SerializeField] private Image _image;
-        private int count = 0;
 
         private void Start()
         {
             GameModel.Instance.GameView._effectPortView = this;
+            GameModel.Instance.GameView.SetRanking();
         }
 
         public IEnumerator PlayFireAnimation()
         {
-            var a = _image.material.color.a;
-            while (a>=0)
-            {
-                a -= 0.1f;
-                yield return null;
-            }
-            SceneManager.LoadScene("Scenes/SampleScene");
-
-            Debug.Log(count);
-
             _port.transform.position = this.transform.position;
-            var obj = Resources.Load("FireBall");
+            var obj = Resources.Load("StartFireBall");
             var instance = (GameObject) Instantiate(obj,
                 new Vector3(_port.transform.position.x, _port.transform.position.y, _port.transform.position.z),
                 Quaternion.identity);

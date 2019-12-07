@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Scripts.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Scripts.Views
@@ -12,6 +13,9 @@ namespace Scripts.Views
         public GameObject Canvas;
         public GameObject Player;
         public Text ResultText;
+        public Image Image;
+        public GameObject UpAnimationObj;
+        public GameObject Ranking;
 
         public void SetResultText(int score, int rank)
         {
@@ -19,9 +23,43 @@ namespace Scripts.Views
             ResultText.text = $"Score : {score}\nRank : {rank} \n{s}";
         }
 
+        public void SetRanking()
+        {
+            GameModel.Instance.GetRanking();
+            Ranking.GetComponent<Text>().text += $"Ranking.\n";
+            int i = 1;
+            foreach (var value in GameModel.Instance.rankingValue)
+            {
+                if (value != null)
+                {
+                    Ranking.GetComponent<Text>().text += $"{i}.{value}\n";
+                }
+
+                i++;
+            }
+        }
+
         private void Awake()
         {
             _gameModel.GameView = this;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(GameProgress());
+            GameModel.Instance.GetRanking();
+        }
+
+        private IEnumerator GameProgress()
+        {
+            if (UpAnimationObj != null)
+            {
+                yield return new WaitForSeconds(100.0f);
+                UpAnimationObj.GetComponent<Animator>().Play("up");
+                yield return new WaitForSeconds(40);
+                GameModel.Instance.EndGame();
+                SceneManager.LoadScene("Scenes/Start");
+            }
         }
 
         public void OnSE()
