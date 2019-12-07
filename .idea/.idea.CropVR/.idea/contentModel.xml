@@ -8,6 +8,9 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="ImportAssets" t="Include">
+          <e p="3D Items - Wand Pack" t="Include">
+            <e p="Read Me.txt" t="Include" />
+          </e>
           <e p="8K Skybox Pack Free" t="Include">
             <e p="Example Scenes" t="Include">
               <e p="Script" t="Include">
@@ -1022,6 +1025,9 @@
             <e p="GameModel.cs" t="Include" />
           </e>
           <e p="Views" t="Include">
+            <e p="EffectPortView.cs" t="Include" />
+            <e p="EffectsView.cs" t="Include" />
+            <e p="EffectView.cs" t="Include" />
             <e p="GameView.cs" t="Include" />
           </e>
         </e>
