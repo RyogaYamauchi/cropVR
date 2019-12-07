@@ -13,17 +13,17 @@ namespace Scripts.Views
 
         public IEnumerator PlayFireAnimation()
         {
+            _port.transform.position = this.transform.position;
             var obj = Resources.Load("FireBall");
             var instance = (GameObject) Instantiate(obj,
-                new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.x),
+                new Vector3(_port.transform.position.x, _port.transform.position.y, _port.transform.position.z),
                 Quaternion.identity);
             instance.transform.SetParent(_port.transform);
             instance.transform.rotation = this.transform.rotation;
             var cnt = 0;
             while (cnt < 500)
             {
-                Debug.Log(cnt);
-                instance.transform.position += instance.gameObject.transform.forward * Time.deltaTime*50;
+                instance.transform.position += instance.gameObject.transform.forward * Time.deltaTime*30;
                 cnt++;
                 yield return null;
             }
