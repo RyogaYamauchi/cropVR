@@ -70,15 +70,6 @@ namespace Scripts.Views
 
         private void Update()
         {
-            if (OVRInput.GetDown(OVRInput.RawButton.A))
-            {
-                OnPushA();
-            }
-
-            if (OVRInput.GetDown(OVRInput.RawButton.B))
-            {
-                OnPushB();
-            }
 
             if (OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
             {
